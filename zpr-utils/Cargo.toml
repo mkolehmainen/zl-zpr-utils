@@ -1,6 +1,6 @@
 [package]
 name = "zpr-utils"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2024"
 
 [dependencies]
@@ -8,4 +8,4 @@ aws-lc-rs = "1.17"
 internet-checksum = "0.2.1"
 pem-rfc7468 = { version = "1.0", features = ["alloc"] }
 zerocopy = { version = "0.8.3", features = ["derive", "std"] }
-zpr = { git = "https://github.com/org-zpr/zpr-common.git", tag = "v0.8.1", features = ["vsapi", "policy"] }
+zpr = { git = "https://github.com/mkolehmainen/zl-zpr-common.git", tag = "v0.8.1", features = ["vsapi", "policy"] }
