@@ -40,6 +40,15 @@ impl UdpSocketExt for UdpSocket {
         return Ok(1400);
     }
 
+    /// Retrieve the socket's current known path MTU.
+    ///
+    /// On Windows this returns the same fixed 1400-byte fallback the macOS
+    /// implementation uses; no per-path MTU query is attempted.
+    #[cfg(windows)]
+    fn mtu(&self) -> io::Result<u32> {
+        Ok(1400)
+    }
+
     #[cfg(any(target_os = "android", target_os = "linux"))]
     fn attach_reuse_port_cbpf(&self, filter: &[libc::sock_filter]) -> io::Result<()> {
         let fprog = libc::sock_fprog {
