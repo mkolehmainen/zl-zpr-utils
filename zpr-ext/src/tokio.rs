@@ -1,3 +1,4 @@
+#[cfg(unix)]
 pub mod net {
     use crate::std::os::unix::net::{
         SocketAncillary, uds_recv_vectored_with_ancillary, uds_send_vectored_with_ancillary,
@@ -35,6 +36,16 @@ pub mod net {
             // For mac I need to get the interface name and then call
             // an ioctl to get MTU.
             return Ok(1400);
+        }
+
+        /// Retrieve the socket's current known path MTU.
+        ///
+        /// On Windows this returns the same fixed 1400-byte fallback the macOS
+        /// implementation uses; no per-path MTU query is attempted. (Inert while
+        /// this module is `cfg(unix)`-gated; kept for symmetry with `std::net`.)
+        #[cfg(windows)]
+        fn mtu(&self) -> io::Result<u32> {
+            Ok(1400)
         }
 
         #[cfg(any(target_os = "android", target_os = "linux"))]

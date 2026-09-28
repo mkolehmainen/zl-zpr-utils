@@ -1,8 +1,10 @@
 pub trait SockAddrExt {
+    #[cfg(unix)]
     fn new_unspec() -> Self;
 }
 
 impl SockAddrExt for socket2::SockAddr {
+    #[cfg(unix)]
     fn new_unspec() -> Self {
         // SAFETY: AF_UNSPEC is compatible with any sockaddr struct
         unsafe {
