@@ -77,7 +77,7 @@ pub mod net {
         }
     }
 
-    #[cfg(any(doc, unix))]
+    #[cfg(unix)]
     #[allow(async_fn_in_trait)]
     pub trait UnixStreamExt {
         async fn send_vectored_with_ancillary(
@@ -93,7 +93,7 @@ pub mod net {
         ) -> io::Result<usize>;
     }
 
-    #[cfg(any(doc, unix))]
+    #[cfg(unix)]
     impl UnixStreamExt for UnixStream {
         async fn send_vectored_with_ancillary(
             &self,
