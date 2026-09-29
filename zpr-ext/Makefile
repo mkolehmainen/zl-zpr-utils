@@ -10,7 +10,7 @@ test:
 	cargo test --verbose --features all
 
 check:
-	cargo fmt --check && cargo rustc --lib --features all -- -D warnings && cargo check --target x86_64-pc-windows-msvc --all-features
+	cargo fmt --check && cargo rustc --lib --features all -- -D warnings && cargo check --target x86_64-pc-windows-msvc --all-features && cargo doc --no-deps --all-features --target x86_64-pc-windows-msvc
 
 clean:
 	cargo clean
