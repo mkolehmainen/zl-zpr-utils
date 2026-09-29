@@ -1,4 +1,4 @@
 #[cfg(unix)]
 pub mod fd;
-#[cfg(any(doc, unix))]
+#[cfg(unix)]
 pub mod unix;
